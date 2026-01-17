@@ -1,0 +1,18 @@
+[build]
+  command = "npm install && npm run build"
+  publish = "dist"
+  base = "."
+
+[dev]
+  command = "npm run dev"
+  port = 5173
+
+[env]
+  # 设置前端API基础URL，将在部署后由Cloudflare Workers的URL替换
+  VITE_API_URL = ""
+
+# 配置重写规则，处理单页应用路由问题
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

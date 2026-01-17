@@ -1,27 +1,16 @@
-import Database from 'better-sqlite3'
-import path from 'path'
-import { fileURLToPath } from 'url'
-
-// 获取当前文件的绝对路径
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
-let db
-
+// 全局DB对象由Cloudflare Workers绑定提供
 export function getDb() {
-  if (!db) {
-    // 使用绝对路径指向数据库文件
-    db = new Database(path.resolve(__dirname, '../data.sqlite'))
-    db.pragma('journal_mode = WAL')
-    db.pragma('foreign_keys = ON')
+  if (!globalThis.DB) {
+    throw new Error('Database not initialized. Make sure you are running in Cloudflare Workers with D1 bound.');
   }
-  return db
+  return globalThis.DB;
 }
 
-export function initDb() {
+export async function initDb() {
   const db = getDb()
 
-  db.exec(`
+  // D1的exec方法是异步的
+  await db.exec(`
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       email TEXT NOT NULL UNIQUE,
@@ -84,10 +73,10 @@ export function initDb() {
     CREATE INDEX IF NOT EXISTS idx_user_achievements_user ON user_achievements(user_id);
   `)
 
-  seedAchievements(db)
+  await seedAchievements(db)
 }
 
-function seedAchievements(db) {
+async function seedAchievements(db) {
   const defs = [
     // streak
     { code: 'streak_3', name: '连续学习 3 天', description: '连续学习 3 天', kind: 'streak_days', target_value: 3, icon: '🔥', color: '#f59e0b' },
@@ -104,15 +93,12 @@ function seedAchievements(db) {
     { code: 'single_90m', name: '专注 90 分钟', description: '单次专注达到 90 分钟', kind: 'single_session_minutes', target_value: 90, icon: '🎯', color: '#3b82f6' },
   ]
 
-  const insert = db.prepare(`
-    INSERT INTO achievement_defs (code, name, description, kind, target_value, icon, color)
-    VALUES (@code, @name, @description, @kind, @target_value, @icon, @color)
-    ON CONFLICT(code) DO NOTHING
-  `)
-
-  const tx = db.transaction((rows) => {
-    for (const row of rows) insert.run(row)
-  })
-
-  tx(defs)
+  // 使用D1的事务方式
+  await db.batch(
+    defs.map(def => db.prepare(`
+      INSERT INTO achievement_defs (code, name, description, kind, target_value, icon, color)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+      ON CONFLICT(code) DO NOTHING
+    `).bind(def.code, def.name, def.description, def.kind, def.target_value, def.icon, def.color))
+  )
 }

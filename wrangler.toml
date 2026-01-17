@@ -1,0 +1,13 @@
+name = "study-progress-tracker-api"
+main = "src/worker.js"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"  # 绑定到Worker的变量名
+name = "study-progress-db"  # 数据库名称
+database_id = ""  # 部署时会自动生成
+
+[vars]
+JWT_SECRET = "your-secret-key-change-in-production"  # 生产环境需要更改
+CORS_ORIGIN = "*"  # 允许所有来源，生产环境应该限制为Netlify的URL
