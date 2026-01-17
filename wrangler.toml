@@ -1,4 +1,4 @@
-name = "study-progress-tracker-api"
+name = "study-systerm"
 main = "src/worker.js"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
@@ -11,3 +11,6 @@ database_id = "fa63bec0-1979-49ab-9058-673a17021bf0"  # 数据库ID
 [vars]
 JWT_SECRET = "your-secret-key-change-in-production"  # 生产环境需要更改
 CORS_ORIGIN = "*"  # 允许所有来源，生产环境应该限制为Netlify的URL
+
+[deploy]
+workers_dev = true
