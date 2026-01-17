@@ -2,16 +2,23 @@
   command = "npm install && npm run build"
   publish = "dist"
   base = "."
+  functions = "node-functions"
 
 [dev]
   command = "npm run dev"
   port = 5173
 
 [env]
-  # 设置前端API基础URL，将在部署后由Cloudflare Workers的URL替换
+  # 设置前端API基础URL，将在部署后由Netlify Functions的URL替换
   VITE_API_URL = ""
 
-# 配置重写规则，处理单页应用路由问题
+# 配置API重定向规则
+[[redirects]]
+  from = "/api/*"
+  to = ".netlify/functions/api/:splat"
+  status = 200
+
+# 配置单页应用路由重写
 [[redirects]]
   from = "/*"
   to = "/index.html"
