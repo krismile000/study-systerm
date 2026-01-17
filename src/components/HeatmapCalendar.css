@@ -1,0 +1,92 @@
+.heatmap-calendar-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.heatmap-container {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.heatmap-weekdays {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 24px;
+}
+
+.weekday-label {
+  font-size: 12px;
+  color: #b0b0b0;
+  height: 12px;
+  line-height: 12px;
+  margin-bottom: 4px;
+}
+
+.heatmap-grid {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+
+.heatmap-week {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.heatmap-cell {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid #333;
+}
+
+.heatmap-cell:hover {
+  border-color: #14b8a6;
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+.heatmap-tooltip {
+  position: absolute;
+  background-color: #252525;
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  border: 1px solid #14b8a6;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.legend-label {
+  font-size: 12px;
+  color: #b0b0b0;
+}
+
+.legend-colors {
+  display: flex;
+  gap: 4px;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  border: 1px solid #333;
+}

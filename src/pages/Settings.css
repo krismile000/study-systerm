@@ -1,0 +1,20 @@
+.settings-page {
+  width: 100%;
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+
+.settings-content {
+  background-color: #252525;
+  border-radius: 12px;
+  padding: 48px;
+  border: 1px solid #333;
+  text-align: center;
+  color: #b0b0b0;
+}
+

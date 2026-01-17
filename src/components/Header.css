@@ -1,0 +1,112 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #252525;
+  border-bottom: 1px solid #333;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  font-size: 24px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.header-username {
+  color: #b0b0b0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.header-logout {
+  background: transparent;
+  border: 1px solid #333;
+  color: #b0b0b0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.header-logout:hover {
+  color: #ffffff;
+  border-color: #14b8a6;
+}
+
+.header-auth {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-login-btn,
+.header-register-btn {
+  border: 1px solid #333;
+  color: #b0b0b0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.header-login-btn:hover,
+.header-register-btn:hover {
+  color: #ffffff;
+  border-color: #14b8a6;
+}
+
+.header-register-btn {
+  border-color: rgba(20, 184, 166, 0.35);
+  color: #14b8a6;
+}
+
+.header-register-btn:hover {
+  border-color: #14b8a6;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #14b8a6;
+}
+
+.quick-start-btn {
+  background-color: #14b8a6;
+  color: #ffffff;
+  padding: 10px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.quick-start-btn:hover {
+  background-color: #0d9488;
+}

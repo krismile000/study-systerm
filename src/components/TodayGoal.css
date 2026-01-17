@@ -1,0 +1,68 @@
+.today-goal-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #b0b0b0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.progress-circle-container {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin-bottom: 20px;
+}
+
+.progress-circle {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.progress-circle-bg {
+  stroke: #2a2a2a;
+}
+
+.progress-circle-fill {
+  stroke: #14b8a6;
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.progress-percent {
+  font-size: 32px;
+  font-weight: 700;
+  color: #14b8a6;
+}
+
+.progress-info {
+  text-align: center;
+  width: 100%;
+}
+
+.time-info {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.goal-text {
+  font-size: 14px;
+  color: #b0b0b0;
+  line-height: 1.4;
+}
