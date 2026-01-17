@@ -1,10 +1,17 @@
 import Database from 'better-sqlite3'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+// 获取当前文件的绝对路径
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 let db
 
 export function getDb() {
   if (!db) {
-    db = new Database('backend/data.sqlite')
+    // 使用绝对路径指向数据库文件
+    db = new Database(path.resolve(__dirname, '../data.sqlite'))
     db.pragma('journal_mode = WAL')
     db.pragma('foreign_keys = ON')
   }
