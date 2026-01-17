@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import { z } from 'zod'
 import { getDb } from '../db.js'
 import { signToken } from '../utils/jwt.js'
