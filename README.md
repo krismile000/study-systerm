@@ -26,10 +26,10 @@
 npm install
 ```
 
-### 开发模式
+### 开发模式(同时启动前后端)
 
 ```bash
-npm run dev
+npm run dev:all
 ```
 
 应用将在 `http://localhost:5173` 启动
