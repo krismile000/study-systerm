@@ -3,21 +3,19 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import { initDb } from './src/db.js'
 
+// 导入路由
 import authRoutes from './src/routes/auth.js'
-import meRoutes from './src/routes/me.js'
-import sessionsRoutes from './src/routes/sessions.js'
-import goalsRoutes from './src/routes/goals.js'
-import reportsRoutes from './src/routes/reports.js'
-import achievementsRoutes from './src/routes/achievements.js'
+// ... 其他路由
 
-dotenv.config({ path: new URL('./.env', import.meta.url) })
+dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT || 3001
 
-// init db
+// 初始化数据库
 initDb()
 
+// 配置CORS
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
@@ -26,18 +24,15 @@ app.use(
 )
 app.use(express.json())
 
+// 配置路由
 app.get('/api/health', (req, res) => {
   res.json({ ok: true, service: 'study-progress-api' })
 })
 
 app.use('/api/auth', authRoutes)
-app.use('/api/me', meRoutes)
-app.use('/api/sessions', sessionsRoutes)
-app.use('/api/goals', goalsRoutes)
-app.use('/api/reports', reportsRoutes)
-app.use('/api/achievements', achievementsRoutes)
+// ... 其他路由
 
-// basic error handler
+// 错误处理
 app.use((err, req, res, next) => {
   console.error(err)
   const status = err.status || 500
@@ -46,6 +41,16 @@ app.use((err, req, res, next) => {
   })
 })
 
-app.listen(PORT, () => {
-  console.log(`[API] listening on http://localhost:${PORT}`)
-})
+// 导出为EdgeOne Functions格式
+export default async (event, context) => {
+  // 处理HTTP请求
+  if (event.type === 'http') {
+    return app(event, context)
+  }
+  
+  // 其他事件类型处理
+  return {
+    statusCode: 400,
+    body: JSON.stringify({ error: 'Unsupported event type' })
+  }
+}
