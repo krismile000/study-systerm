@@ -1,4 +1,5 @@
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:3001'
+// 使用环境变量配置API地址，支持不同部署环境
+const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE || ''
 
 export function getToken() {
   return localStorage.getItem('token')

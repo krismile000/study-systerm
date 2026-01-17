@@ -10,10 +10,10 @@ import goalsRoutes from './src/routes/goals.js'
 import reportsRoutes from './src/routes/reports.js'
 import achievementsRoutes from './src/routes/achievements.js'
 
-dotenv.config({ path: new URL('./.env', import.meta.url) })
+dotenv.config({ path: new URL('../.env', import.meta.url) })
 
 const app = express()
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 8088
 
 // init db
 initDb()
